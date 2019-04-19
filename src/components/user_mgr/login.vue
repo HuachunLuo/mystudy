@@ -27,12 +27,21 @@ npm<template>
             </div>
             <div class="info-body-top1">
               <div style="width:80%;height:100%;display:inline-block;vertical-align: middle;">
-                <img style="width:30px;height:30px;vertical-align: middle;" src="../../assets/img/secuity.png">
-                <el-input style="width:80%;height:30px;border: 0;display:inline-block;" v-model="userinfo.verifity" placeholder="请输入验证码"></el-input>
+                <img
+                  style="width:30px;height:30px;vertical-align: middle;"
+                  src="../../assets/img/secuity.png"
+                >
+                <el-input
+                  style="width:80%;height:30px;border: 0;display:inline-block;"
+                  v-model="userinfo.verifity"
+                  placeholder="请输入验证码"
+                ></el-input>
               </div>
-              <div style="width:10%;height:40px;display:inline-block;vertical-align: middle;background-color:red;">
-                <img src=""></img>
-               
+              <div
+                style="width:15%;height:40px;display:inline-block;vertical-align: middle;margin-bottom:30px; test-align:center; background-color:white;">
+                <a style="text-decoration:none;" href="javascript:;" @click="changeCodeImg()">
+                  <img style="font-size:10px" :src="codeImg" alt="加载失败">
+                </a>
               </div>
             </div>
             <div class="info-body-top">
@@ -53,6 +62,9 @@ npm<template>
 <script>
 export default {
   name: "login",
+  created(){
+    this.codeImg="url";
+  },
   data() {
     return {
       userinfo: {
@@ -62,7 +74,8 @@ export default {
         isRember: true
       },
       isactive: true,
-      inputverifity: "input-verifity"
+      inputverifity: "input-verifity",
+      codeImg:''
     };
   },
   methods: {
@@ -75,8 +88,13 @@ export default {
       this.isactive = false;
       console.log(this.isactive);
       console.log("onBlur");
+    },
+    changeCodeImg:function(){
+      var num=Math.ceil(Math.random()*10);
+      this.codeImg='url?'+num;
     }
   }
+
 };
 </script>
 
@@ -90,7 +108,7 @@ export default {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
 .back {
   position: absolute;
@@ -178,7 +196,7 @@ export default {
   vertical-align: middle;
   /* background-color: green; */
 }
-.info-body-top1> img {
+.info-body-top1 > img {
   height: 30px;
   vertical-align: middle;
 }
@@ -216,7 +234,7 @@ export default {
   margin-left: 10px;
   border: 0 none;
   border-radius: 0px;
-} 
+}
 .el-button {
   width: 100%;
   height: 50px;
@@ -247,7 +265,7 @@ info-foot {
   margin-left: 10px;
   border-radius: 0px;
 }
-#inputVerifity{
+#inputVerifity {
   width: 60%;
   height: 50px;
   border: 0;
